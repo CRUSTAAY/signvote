@@ -1,0 +1,11 @@
+#
+name: Signvote
+main: com.krowcraft.signvote.mainvote
+version: 0.1
+author: CRUSTY_KROW
+commands:
+  signvote:
+    description: 
+    Usage:
+    permission: signvote.use
+    permission-message: No permissions to use
