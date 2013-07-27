@@ -24,7 +24,6 @@ public class mainvote extends JavaPlugin{
 	public void onEnable(){
 	instance = this; 												//in order to make method votewrite static
 	getServer().getPluginManager().registerEvents(new PlayerClickListener(this), this);// register playerclicklistener
-	votewrite(10,5,7,"CRUSTYKROW","Fapcomp"); 						//debug
 	}
 
 	@Override
@@ -84,7 +83,7 @@ public class mainvote extends JavaPlugin{
 		instance.saveConfig();
 	}
 	
-	public static void votewrite(int x, int y, int z, String compplayer, String comp){
+	public static void votewrite(int x, int y, int z, String compplayer, String comp){//signs
 		String getsignnostr = comp + "." + compplayer + "." + "signno";
 		if(instance.getConfig().getInt(getsignnostr) == 0){
 			instance.getConfig().set(getsignnostr, 1);
@@ -97,7 +96,7 @@ public class mainvote extends JavaPlugin{
 		String usekey = comp + "." + compplayer + "." + getsignno + "." + "Votesigns";
 		String cord = "" + x + ":" + y + ":" + z;
 		instance.getConfig();
-		instance.getConfig().set(usekey, cord);
+		instance.getConfig().set(cord, usekey);
 		instance.saveConfig();
 	}
 	

@@ -1,6 +1,5 @@
 package com.krowcraft.signvote;
 
-import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -22,7 +21,6 @@ public class PlayerClickListener implements Listener{
 		double x, y, z;
 		String playerstr;
 		Player player = e.getPlayer();
-		Player voteplayer;
 		Action eAction = e.getAction();
 		if (eAction == Action.RIGHT_CLICK_BLOCK ) {
 			mainvote.logger.info("Right click block");
@@ -37,13 +35,10 @@ public class PlayerClickListener implements Listener{
 				if(mainvote.selectplayers.containsKey(player.getDisplayName())){
 					mainvote.logger.info("contains player");
 					mainvote.logger.info(mainvote.selectplayers.get(player.getName()));
-
 					playerstr = sign.getLine(0);
-					voteplayer = Bukkit.getServer().getPlayer(playerstr);
-					mainvote.votewrite((int) x,(int) y,(int) z,voteplayer.getName(),mainvote.selectplayers.get(player.getName()));
-					
+					mainvote.votewrite((int) x,(int) y,(int) z,playerstr,mainvote.selectplayers.get(player.getName()));
 				} else {
-					
+					//mainvote.voteread(mainvote.instance.getConfig().contains(path));
 					
 				}
 			}
