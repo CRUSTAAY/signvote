@@ -42,6 +42,7 @@ public class mainvote extends JavaPlugin{
 						if (sentplayer.hasPermission("signvote.create") || sentplayer.isOp()){ //can player create signvote comps
 							if(args.length == 2){ 					//2 args min req to create
 								sentplayer.sendMessage("Create"); 	//debug
+								createcomp(args[1], sentplayer);
 								selectplayers.put(sentplayer.getName(), args[1]); //put in working store with comp name
 							} else {
 																	//invalid not enough args
@@ -69,7 +70,11 @@ public class mainvote extends JavaPlugin{
 		return false;
 	}
 	
-	
+	public void createcomp(String string, Player sentplayer) {
+		instance.getConfig().set(string + ".owner", sentplayer.getName());
+	}
+
+	//TODO: create on comp create and write methods
 	public void signinfo(int x, int y, int z, String compplayer, String player){//
 		String comp = selectplayers.get(player);
 		votewrite(x, y, z, compplayer, comp);
@@ -84,7 +89,7 @@ public class mainvote extends JavaPlugin{
 	}
 	
 	public static void votewrite(int x, int y, int z, String compplayer, String comp){//signs
-		String getsignnostr = comp + "." + compplayer + "." + "signno";
+		String getsignnostr = comp + ".teams." + compplayer + "." + "signno";
 		if(instance.getConfig().getInt(getsignnostr) == 0){
 			instance.getConfig().set(getsignnostr, 1);
 		} else{
