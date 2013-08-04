@@ -50,7 +50,20 @@ public class mainvote extends JavaPlugin{
 							}
 						}
 					}else if(args[0].equalsIgnoreCase("delete")){ 	//not implemented atm
-						
+					}else if(args[0].equalsIgnoreCase("finish")){
+					}else if(args[0].equalsIgnoreCase("set")){ // toggle setting signs
+						if(args.length == 2){
+							if(instance.getConfig().contains(args[1])){
+								if(instance.getConfig().getString(args[1] + "owner") == sentplayer.getName()){
+									selectplayers.put(sentplayer.getName(), args[1]);
+								}
+							}else{
+								if(selectplayers.containsKey(sentplayer.getName())){
+									selectplayers.remove(sentplayer.getName());
+								}
+							}
+							
+						}
 					}else if(args[0].equalsIgnoreCase("modify")){ 	//not implemented atm
 						
 					} else { 										//invalid not enough args, send help messages
@@ -71,6 +84,7 @@ public class mainvote extends JavaPlugin{
 	}
 	
 	public void createcomp(String string, Player sentplayer) {
+		instance.getConfig().set(string + ".maxvotesperplayer", 3);
 		instance.getConfig().set(string + ".owner", sentplayer.getName());
 	}
 
